@@ -16,8 +16,8 @@ try:
 except ImportError:
     TF_AVAILABLE = False
 
-from .data_pipeline import generate_synthetic_dataset
-from .feature_engineering import create_feature_matrix
+from data_pipeline import generate_synthetic_dataset
+from feature_engineering import create_feature_matrix
 
 if TF_AVAILABLE:
     logging.getLogger("tensorflow").setLevel(logging.ERROR)

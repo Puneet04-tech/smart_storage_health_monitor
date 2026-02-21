@@ -138,7 +138,12 @@ def compute_derived_metrics(df: pd.DataFrame) -> pd.DataFrame:
         df["smart_182"] / 100,                           # Higher is better
     ]
     health_score = np.mean(health_components, axis=0)
-    df["health_score_trend"] = health_score.rolling(window=14).apply(lambda x: np.polyfit(range(len(x)), x, 1)[0] if len(x) > 1 else 0, raw=False).fillna(0)
+    # Ensure health_score is a pandas Series so rolling() is available
+    health_score_series = pd.Series(health_score, index=df.index)
+    df["health_score_trend"] = health_score_series.rolling(window=14).apply(
+        lambda x: np.polyfit(range(len(x)), x, 1)[0] if len(x) > 1 else 0,
+        raw=False,
+    ).fillna(0)
     
     # Volatility index - measure of instability in SMART attributes
     volatility_attrs = ["smart_5", "smart_187", "smart_194", "smart_171"]

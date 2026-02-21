@@ -5,11 +5,11 @@ from typing import Any
 import plotly.express as px
 import streamlit as st
 
-from smart_storage_health_monitor.data_pipeline import generate_synthetic_dataset, load_smart_csv
-from smart_storage_health_monitor.feature_engineering import create_feature_matrix
-from smart_storage_health_monitor.monitoring import forecast_temperature_trend
-from smart_storage_health_monitor.models import build_demo_models, ensemble_predict
-from smart_storage_health_monitor.utils import dataframe_to_csv_bytes
+from data_pipeline import generate_synthetic_dataset, load_smart_csv
+from feature_engineering import create_feature_matrix
+from monitoring import forecast_temperature_trend
+from models import build_demo_models, ensemble_predict
+from utils import dataframe_to_csv_bytes
 
 st.set_page_config(page_title="Smart Storage Health Monitor", layout="wide")
 
